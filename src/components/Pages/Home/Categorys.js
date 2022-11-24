@@ -19,9 +19,9 @@ const Categorys = () => {
                <div key={category._id} className="card card-compact w-96 bg-base-100 shadow-xl">
   <figure><img src={category.img} alt="Shoes" /></figure>
   <div className="card-body">
-    
+     
     <div className="card-actions justify-end">
-        <Link  to={`/category/${category._id}`}>
+        <Link  to={`/categorys/${category._id}`}>
             <button className="btn btn-primary">{category.name}</button>
         </Link>
     </div>
