@@ -1,12 +1,39 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthProvider';
 
 const Signup = () => {
 
       const { register, handleSubmit,formState:{errors} } = useForm();
+       const [signupError, setSignupError] = useState();
+       const { createUser,updateUserProfile } = useContext(AuthContext);
     const handleLogin = data => {
-      console.log(data)
+          setSignupError('')
+        console.log(data)
+        createUser(data.email, data.password)
+            .then(result => {
+                const user = result.user;
+                 handleUpdateProfile(data.name, data.photo)
+                console.log(user); 
+                toast.success('User Created successfully')
+            }).catch(e =>{
+                setSignupError(e.message)
+                console.log(e)
+            })
+        
+    }
+    
+
+     const handleUpdateProfile = (name, photo) => {
+        const profile = {
+            displayName: name,
+            photoURL:photo
+    }
+        updateUserProfile(profile)
+        .then(() => {})
+        .catch(error => console.error(error))
   }
     return (
         <div className='h-[800px] flex justify-center items-center'>
@@ -37,11 +64,13 @@ const Signup = () => {
       </label>
               <input type="password" className="input input-bordered w-full max-w-xs" {...register("password", { required: "Password is required",minLength:{value:6,message:'Password must be atlist 6 characters'} })} />
                  {errors.password && <p role='alert'>{errors.password?.message}</p>}
-        {/* <label className="label"><span className="label-text">Forget password</span>
-      </label> */}
+      
       </div>        
      
-      <input className='btn  bg-amber-600 w-full mt-4' type="submit" value='SignUp'/>
+                    <input className='btn  bg-amber-600 w-full mt-4' type="submit" value='SignUp' />
+                     {
+                        signupError && <p>{ signupError}</p>
+                    }
          </form>
             
                 <p>Have an account <Link className='text-accent' to='/login'>please login</Link></p>
