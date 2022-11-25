@@ -7,7 +7,7 @@ import Loading from '../components/Shareds/Loading';
 //all user work
 const Admin = () => {
 
-     const [deleting, setDeleting] = useState(null);
+    const [deleting, setDeleting] = useState(null);
 
     const closeModal = () => {
         setDeleting(null);

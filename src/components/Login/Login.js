@@ -16,7 +16,7 @@ const Login = () => {
   const from = location.state?.from?.pathname || '/';
    if (token) {
     navigate(from, {replace: true});
-  }
+  } 
     const handleLogin = data => {
         setLoginError('')
         console.log(data)

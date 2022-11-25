@@ -1,12 +1,15 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 
 const ErrorPage = () => {
-    const {logOut}=useContext(AuthContext)
+    const {logOut}=useContext(AuthContext);
+    const navigate=useNavigate()
   const handleLogOut = () => {
     logOut()
-    .then(()=>{})
+    .then(()=>{
+      navigate('/login')
+    })
     .then(e=>console.log(e))
  }
   return (
@@ -30,7 +33,7 @@ const ErrorPage = () => {
               </Link>
          
                  <Link
-            to='/login'
+            // to='/login'
             className='ml-2 px-4 py-3 font-semibold rounded bg-purple-900 hover:bg-gray-700 text-gray-100'
           >
             <button onClick={handleLogOut}>Logout</button>

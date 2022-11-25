@@ -6,6 +6,7 @@ import Home from "../components/Pages/Home/Home";
 import ErrorPage from "../components/Shareds/ErrorPage";
 import AddProducts from "../Dashboard/AddProducts";
 import Admin from "../Dashboard/Admin";
+import Dashboard from "../Dashboard/Dashboard";
 
 import MyOrder from "../Dashboard/MyOrder";
 import MyProducts from "../Dashboard/MyProducts";
@@ -13,7 +14,9 @@ import Payment from "../Dashboard/Payment";
 import DashboardLayout from "../Layout/DashboardLayout";
 import Main from "../Layout/Main";
 import AdminRoute from "./AdminRoute";
+import BuyerRoute from "./BuyerRoute";
 import PrivateRoute from "./PrivateRoute";
+import SellerRoute from "./SellerRoute";
 
 
 const router = createBrowserRouter([
@@ -49,7 +52,11 @@ const router = createBrowserRouter([
            
             {
                 path: '/dashboard',
-                element:<MyOrder></MyOrder>
+                element:<Dashboard></Dashboard>
+            },
+            {
+                path: '/dashboard/myorder',
+                element:<BuyerRoute><MyOrder></MyOrder></BuyerRoute>
             },
             {
                 path: '/dashboard/admin',
@@ -57,11 +64,11 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/addproducts',
-                element:<AddProducts></AddProducts>
+                element:<SellerRoute><AddProducts></AddProducts></SellerRoute>
             },
             {
                 path: '/dashboard/myproducts',
-                element:<MyProducts></MyProducts>
+                element:<SellerRoute><MyProducts></MyProducts></SellerRoute>
             },
             {
                 path: '/dashboard/payment/:id',
