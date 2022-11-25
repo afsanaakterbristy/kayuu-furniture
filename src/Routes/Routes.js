@@ -4,10 +4,13 @@ import Login from "../components/Login/Login";
 import Signup from "../components/Login/Signup";
 import Home from "../components/Pages/Home/Home";
 import ErrorPage from "../components/Shareds/ErrorPage";
+import AddProducts from "../Dashboard/AddProducts";
+import Admin from "../Dashboard/Admin";
 
 import MyOrder from "../Dashboard/MyOrder";
 import DashboardLayout from "../Layout/DashboardLayout";
 import Main from "../Layout/Main";
+import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";
 
 
@@ -38,13 +41,21 @@ const router = createBrowserRouter([
     },
     {
          path: '/dashboard',
-        element: <DashboardLayout></DashboardLayout>,
+        element:<PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
         errorElement: <ErrorPage></ErrorPage>,
         children: [
            
             {
                 path: '/dashboard',
-                element:<PrivateRoute><MyOrder></MyOrder></PrivateRoute>
+                element:<MyOrder></MyOrder>
+            },
+            {
+                path: '/dashboard/admin',
+                element:<AdminRoute><Admin></Admin></AdminRoute>
+            },
+            {
+                path: '/dashboard/addproducts',
+                element:<AddProducts></AddProducts>
             },
         ]
 
