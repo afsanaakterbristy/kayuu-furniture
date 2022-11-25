@@ -36,21 +36,27 @@ const AddProducts = () => {
         .then(imgData => {
             if(imgData.success){
                 console.log(imgData.data.url);
-                const doctor = {
+                const product = {
                     name: data.name, 
-                    email: data.email,
-                    specialty: data.specialty,
-                    image: imgData.data.url
+                    image: imgData.data.url,
+                    price: data.price,
+                    number: data.number,
+                    location: data.location,
+                    description: data.description,
+                    purchase: data.purchase,
+                    option: data.option,
+                    category:data.category
+                    
                 }
 
                 // save doctor information to the database
-                fetch('http://localhost:5000/doctors', {
+                fetch('http://localhost:5000/product', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json', 
                         authorization: `bearer ${localStorage.getItem('accessToken')}`
                     },
-                    body: JSON.stringify(doctor)
+                    body: JSON.stringify(product)
                 })
                 .then(res => res.json())
                 .then(result =>{
@@ -99,7 +105,7 @@ const AddProducts = () => {
          <div className="form-control w-full max-w-xs">
        <label className="label"><span className="label-text"> location </span>
       </label>
-              <input type="text" className="input input-bordered w-full max-w-xs" {...register(" location ", { required: " location  is required" })} />
+              <input type="text" className="input input-bordered w-full max-w-xs" {...register("location", { required: " location  is required" })} />
               {errors.location  && <p role='alert'>{errors.location?.message}</p>}
       
                     </div> 
@@ -142,7 +148,7 @@ const AddProducts = () => {
             {errors.category && <p role='alert'>{errors.category?.message}</p>}
             <option selected>Please select</option>
                {
-                                    categories.map(category => <option
+                                    categories?.map(category => <option
                                     value={category.category_id}>{category.category_id}</option>)                 
               }      
                      

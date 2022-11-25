@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthProvider';
 
 const ErrorPage = () => {
-
-    return (
+    const {logOut}=useContext(AuthContext)
+  const handleLogOut = () => {
+    logOut()
+    .then(()=>{})
+    .then(e=>console.log(e))
+ }
+  return (
         <div>
            
              <section className='flex items-center h-screen p-16 bg-gray-100 text-purple-800'>
@@ -21,7 +27,15 @@ const ErrorPage = () => {
             className='px-8 py-3 font-semibold rounded bg-purple-900 hover:bg-gray-700 text-gray-100'
           >
             Back to homepage
+              </Link>
+         
+                 <Link
+            to='/login'
+            className='ml-2 px-4 py-3 font-semibold rounded bg-purple-900 hover:bg-gray-700 text-gray-100'
+          >
+            <button onClick={handleLogOut}>Logout</button>
           </Link>
+          
         </div>
       </div>
     </section>
