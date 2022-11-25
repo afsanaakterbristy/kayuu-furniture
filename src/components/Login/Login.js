@@ -1,14 +1,17 @@
+import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 import useToken from '../../Hooks/useToken';
+import { setAuthToken } from '../../Token';
 
 const Login = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
      const [loginError, setLoginError] = useState();
-    const { signIn } = useContext(AuthContext);
+    const { signIn,providerLogin } = useContext(AuthContext);
   const location = useLocation();
   const [loginUserEmail, setLoginUserEmail] = useState('');
   const [token]=useToken(loginUserEmail)
@@ -32,6 +35,41 @@ const Login = () => {
                setLoginError(error.message);
             })
   }
+   //google
+    const googleProvider=new GoogleAuthProvider()
+    const handleGoogleSignIn = () => {
+      
+        providerLogin(googleProvider)
+            .then(result => {
+              const user = result.user;
+                console.log(user) 
+              setAuthToken(user)
+               saveUser(user?.email,user?.displayName, user?.photoURL,"Buyer")
+             navigate(from, { replace: true })
+              toast.success('Your Login success')
+        }).catch(error=>console.error(error))
+  }  
+  
+     const saveUser = (name, email,photo,option) => {
+        const user = { name, email,photo,option};
+        fetch(`http://localhost:5000/users`, {
+            method: "POST",
+            headers: {
+                'content-type':'application/json'
+
+            },
+            body:JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)                
+             setLoginUserEmail(email)
+               
+        })
+    }
+    
+
+
     return (
         <div className='h-[800px] flex justify-center items-center'>
             <div className='w-96 p-7 border'>
@@ -64,7 +102,7 @@ const Login = () => {
             
                 <p>Don't have an account <Link className='text-accent' to='/signup'>please signup</Link></p>
                 <div className="divider">OR</div>
-                <button className='btn btn-outline w-full'>CONTINUE WITH GOOGLE</button>
+                <button onClick={handleGoogleSignIn} className='btn btn-outline w-full'>CONTINUE WITH GOOGLE</button>
             </div>  
           
         </div>
