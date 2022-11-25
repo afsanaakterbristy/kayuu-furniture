@@ -1,27 +1,34 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
+import useToken from '../../Hooks/useToken';
 
 const Signup = () => {
 
       const { register, handleSubmit,formState:{errors} } = useForm();
        const [signupError, setSignupError] = useState();
     const { createUser, updateUserProfile } = useContext(AuthContext);
-     const location = useLocation();
-  const navigate = useNavigate();
-  const from = location.state?.from?.pathname || '/';
+      const [createUserEmail,setCreateUserEmail]=useState('')
+ const [token]=useToken(createUserEmail)
+    const navigate = useNavigate()
+    
+    if (token) {
+        navigate('/')
+    }
+  
        const handleLogin = data => {
         setSignupError('')
         console.log(data)
         createUser(data.email, data.password)
             .then(result => {
                 const user = result.user;
-                 handleUpdateProfile(data.name, data.photo)
+                handleUpdateProfile(data.name, data.photo)
+                saveUser(data.name,data.email, data.photo,data.option)
                 console.log(user); 
                 toast.success('User Created successfully')
-                 navigate(from, {replace: true});
+               
             }).catch(e =>{
                 setSignupError(e.message)
                 console.log(e)
@@ -29,6 +36,23 @@ const Signup = () => {
         
     }
     
+     const saveUser = (name, email,photo,option) => {
+        const user = { name, email,photo,option};
+        fetch(`http://localhost:5000/users`, {
+            method: "POST",
+            headers: {
+                'content-type':'application/json'
+
+            },
+            body:JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)                
+             setCreateUserEmail(email)
+               
+        })
+    }
 
      const handleUpdateProfile = (name, photo) => {
         const profile = {
@@ -69,7 +93,19 @@ const Signup = () => {
               <input type="password" className="input input-bordered w-full max-w-xs" {...register("password", { required: "Password is required",minLength:{value:6,message:'Password must be atlist 6 characters'} })} />
                  {errors.password && <p role='alert'>{errors.password?.message}</p>}
       
-      </div>        
+      </div>  
+        <div className="form-control w-full max-w-xs">
+       <label className="label"><span className="label-text">Choice One</span>
+      </label>
+              
+             <select className="select select-bordered w-full max-w-xs" {...register("option", { required: "option is required" })}
+             >
+            {errors.option && <p role='alert'>{errors.option?.message}</p>}
+            <option selected>Buyer</option>
+            <option>seller</option>           
+            </select>
+                        
+      </div>      
      
                     <input className='btn  bg-amber-600 w-full mt-4' type="submit" value='SignUp' />
                      {

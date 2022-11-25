@@ -2,15 +2,21 @@ import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
+import useToken from '../../Hooks/useToken';
 
 const Login = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
      const [loginError, setLoginError] = useState();
     const { signIn } = useContext(AuthContext);
-     const location = useLocation();
+  const location = useLocation();
+  const [loginUserEmail, setLoginUserEmail] = useState('');
+  const [token]=useToken(loginUserEmail)
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || '/';
+   if (token) {
+    navigate(from, {replace: true});
+  }
     const handleLogin = data => {
         setLoginError('')
         console.log(data)
@@ -18,8 +24,8 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
               console.log(user);
-             // setLoginUserEmail(data.email)
-              navigate(from, {replace: true});
+              setLoginUserEmail(data.email)
+             // navigate(from, {replace: true});
             })
             .catch(error => {
                 console.log(error.message)
@@ -47,18 +53,7 @@ const Login = () => {
       </label>
       </div>        
      
-       <div className="form-control w-full max-w-xs">
-       <label className="label"><span className="label-text">Choice One</span>
-      </label>
-              
-             <select className="select select-bordered w-full max-w-xs" {...register("option", { required: "option is required" })}
-             >
-            {errors.option && <p role='alert'>{errors.option?.message}</p>}
-            <option selected>Buyer</option>
-            <option>seller</option>           
-            </select>
-                        
-      </div>
+      
             <input className='btn  bg-amber-600 w-full mt-3' type="submit" value='Login' />
             <div>
               {

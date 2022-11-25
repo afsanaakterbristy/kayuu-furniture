@@ -4,10 +4,12 @@ import Login from "../components/Login/Login";
 import Signup from "../components/Login/Signup";
 import Home from "../components/Pages/Home/Home";
 import ErrorPage from "../components/Shareds/ErrorPage";
-import Dashboard from "../Dashboard/Dashboard";
+
+import MyOrder from "../Dashboard/MyOrder";
 import DashboardLayout from "../Layout/DashboardLayout";
 import Main from "../Layout/Main";
 import PrivateRoute from "./PrivateRoute";
+
 
 const router = createBrowserRouter([
     {
@@ -39,9 +41,10 @@ const router = createBrowserRouter([
         element: <DashboardLayout></DashboardLayout>,
         errorElement: <ErrorPage></ErrorPage>,
         children: [
+           
             {
                 path: '/dashboard',
-                element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>
+                element:<PrivateRoute><MyOrder></MyOrder></PrivateRoute>
             },
         ]
 
