@@ -44,7 +44,7 @@ const Login = () => {
               const user = result.user;
                 console.log(user) 
               setAuthToken(user)
-               saveUser(user?.email,user?.displayName, user?.photoURL,"Buyer")
+               saveUser(user?.displayName,user?.email, user?.photoURL,"Buyer")
              navigate(from, { replace: true })
               toast.success('Your Login success')
         }).catch(error=>console.error(error))

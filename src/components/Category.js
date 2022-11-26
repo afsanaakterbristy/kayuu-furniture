@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import toast from 'react-hot-toast';
 import {  useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthProvider';
 import BookingModal from './Booking/BookingModal';
@@ -10,6 +11,25 @@ const Categoty = () => {
 	console.log(category);
 	const { user } = useContext(AuthContext)
 	console.log(user.photoURL)
+    
+	 const handleReport = id => {
+        fetch(`http://localhost:5000/users/report/${id}`, {
+            method: 'PUT', 
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.modifiedCount > 0){
+                toast.success('Report successful.')
+               
+            }
+        })
+    }
+
+	 
+	
     return (
 		<div>
 			 <h2 className="text-3xl font-bold text-center mt-9">Our second-hand product categories</h2>
@@ -30,10 +50,15 @@ const Categoty = () => {
 		<p className="text-sm dark:text-gray-400">Codition:{product.codition}</p>
 		<p className="text-sm dark:text-gray-400">SellerName:{product.sellername}</p>
 	</div>
-						
+			<div className='flex justify-between'>
+
 				<label
-                htmlFor="my-modal-3" className="btn bg-amber-500" >Book Now</label>
+				htmlFor="my-modal-3" className="btn bg-amber-500" >Book Now</label>
+						
 			<BookingModal product={product}></BookingModal>
+			<button  onClick={()=>handleReport(product._id)} className='btn bg-amber-500'>Report</button>
+			</div>
+              
 </div>
                     )
 			}  

@@ -1,22 +1,22 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext} from 'react';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import Loading from '../components/Shareds/Loading';
 import { AuthContext } from '../contexts/AuthProvider';
-import useAdmin from '../Hooks/useAdmin';
 import useSeller from '../Hooks/useSeller';
 import useVerify from '../Hooks/useVerify';
 
 
+
+
 //only seller korte parbe ty private seller hobe privabe admin at moto
 const AddProducts = () => {
-   const { user } = useContext(AuthContext)
-  
-  const [isAdmin] = useAdmin(user?.email)
-  const [isVerify] = useVerify(user?.email)
-  const [isSeller] = useSeller(user?.email)
+
+    const { user } = useContext(AuthContext)
+ const [isSeller] = useSeller(user?.email)
+ const [isVerify] = useVerify(user?.email)
  
   
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -170,10 +170,19 @@ const AddProducts = () => {
             </select>
                         
       </div> 
-           </div>
-            { isSeller && isVerify && !isAdmin &&
-                        <input className='btn  bg-amber-600 w-full mt-4' type="submit" value='Add Product' />
-             }
+                 </div>
+                    
+                    {
+                        isSeller && isVerify &&
+                        <input className='btn  bg-amber-600 w-full mt-4' type="submit" value='Add Product' />}
+                    {
+                        !isVerify &&
+                        <>
+                        
+                        <h2 className="font-semibold">You need verify for added products</h2>
+                        </>
+                    }
+          
                         
                 </form>
                    

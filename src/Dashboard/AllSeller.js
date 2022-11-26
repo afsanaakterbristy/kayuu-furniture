@@ -87,7 +87,7 @@ const AllSeller = () => {
             <td>
                 <button className='btn btn-xs btn-danger'>{user.option}</button></td>
                 <td> { user?.role !== 'verify' ?
-                    <button onClick={() => handleMakeVerify(user._id)} className='btn btn-xs btn-primary'>UnVerify</button>:<><label className="btn btn-xs btn-error">veryfy <FontAwesomeIcon className='font-bold text-xl' icon={faCheck} /></label></>}</td>
+                    <button onClick={() => handleMakeVerify(user._id)} className='btn btn-xs btn-primary'>UnVerify</button>:<><label className="btn btn-xs btn-error">veryfy <FontAwesomeIcon className='font-bold text-xl text-blue-900' icon={faCheck} /></label></>}</td>
             <td>
             <label onClick={() => setDeleting(user)} htmlFor="confirmation-modal" className="btn btn-xs btn-error">Delete</label>
             </td></>}

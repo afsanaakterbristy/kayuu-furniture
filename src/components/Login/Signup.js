@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
-import useBuyer from '../../Hooks/useBuyer';
+
 import useToken from '../../Hooks/useToken';
 import { setAuthToken } from '../../Token';
 
@@ -12,13 +12,13 @@ const Signup = () => {
 
       const { register, handleSubmit,formState:{errors} } = useForm();
        const [signupError, setSignupError] = useState();
-    const {user, createUser, updateUserProfile ,providerLogin} = useContext(AuthContext);
+    const { createUser, updateUserProfile ,providerLogin} = useContext(AuthContext);
     const [createUserEmail, setCreateUserEmail] = useState('')
     const location = useLocation()
      const from=location.state?.from?.pathname||'/'
  const [token]=useToken(createUserEmail)
     const navigate = useNavigate()
-     const [setIsBuyer]=useBuyer(user)
+  
     
     if (token) {
         navigate('/')
@@ -32,25 +32,25 @@ const Signup = () => {
               const user = result.user;
                 console.log(user) 
                 setAuthToken(user)
-              saveUser(user?.email,user?.displayName,user?.photoURL,"Buyer")
-             setIsBuyer(true)
+              saveUser(user?.displayName,user?.email,user?.photoURL,"Buyer")
+         
              navigate(from, { replace: true })
               toast.success('Your Register success')
         }).catch(error=>console.error(error))
     }  
   
-       const handleLogin = data => {
+    const handleLogin = data => {
         setSignupError('')
         console.log(data)
         createUser(data.email, data.password)
             .then(result => {
                 const user = result.user;
                 handleUpdateProfile(data.name, data.photo)
-                saveUser(data.name,data.email, data.photo,data.option)
-                console.log(user); 
+                saveUser(data.name, data.email, data.photo, data.option)
+                console.log(user);
                 toast.success('User Created successfully')
                
-            }).catch(e =>{
+            }).catch(e => {
                 setSignupError(e.message)
                 console.log(e)
             })

@@ -13,6 +13,7 @@ import Dashboard from "../Dashboard/Dashboard";
 import MyOrder from "../Dashboard/MyOrder";
 import MyProducts from "../Dashboard/MyProducts";
 import Payment from "../Dashboard/Payment";
+import Report from "../Dashboard/Report";
 import DashboardLayout from "../Layout/DashboardLayout";
 import Main from "../Layout/Main";
 import AdminRoute from "./AdminRoute";
@@ -78,16 +79,20 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/payment/:id',
-                element: <Payment></Payment>,
+                element: <BuyerRoute><Payment></Payment></BuyerRoute>,
                 loader:({params})=>fetch(`http://localhost:5000/bookings/${params.id}`)
             },
               {
                 path:'/dashboard/allbuyer',
-                element:<AllBuyer></AllBuyer>
+                element:<AdminRoute><AllBuyer></AllBuyer></AdminRoute>
             },
               {
                 path:'/dashboard/allseller',
-                element:<AllSeller></AllSeller>
+                element:<AdminRoute><AllSeller></AllSeller></AdminRoute>
+            },
+              {
+                path:'/dashboard/report',
+                element:<AdminRoute><Report></Report></AdminRoute>
             },
         ]
 
