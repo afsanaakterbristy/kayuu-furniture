@@ -1,13 +1,20 @@
 import React from 'react';
 import Categorys from './Categorys';
+import Choice from './Choice';
+import Discount from './Discount';
 import Header from './Header';
+import Items from './Items';
 
 const Home = () => {
     return (
         <div>
             <Header></Header>
+             <Items></Items>
             <Categorys></Categorys>
-            <h2>this is home</h2>
+            <Discount></Discount>
+            <Choice></Choice>
+           
+            
         </div>
     );
 };

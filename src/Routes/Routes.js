@@ -7,7 +7,6 @@ import ErrorPage from "../components/Shareds/ErrorPage";
 import AddProducts from "../Dashboard/AddProducts";
 import Admin from "../Dashboard/Admin";
 import Dashboard from "../Dashboard/Dashboard";
-
 import MyOrder from "../Dashboard/MyOrder";
 import MyProducts from "../Dashboard/MyProducts";
 import Payment from "../Dashboard/Payment";
@@ -31,7 +30,7 @@ const router = createBrowserRouter([
             },
            {
                 path: '/categorys/:id',
-                element:<Categoty></Categoty>,
+                element:<PrivateRoute><Categoty></Categoty></PrivateRoute>,
                 loader:({params})=>fetch(`http://localhost:5000/categorys/${params.id}`)
             },
            {
@@ -52,7 +51,7 @@ const router = createBrowserRouter([
            
             {
                 path: '/dashboard',
-                element:<Dashboard></Dashboard>
+                element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>
             },
             {
                 path: '/dashboard/myorder',

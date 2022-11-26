@@ -12,8 +12,7 @@ const Navber = () => {
      const menuItems = <>
         <li className='font-bold'><Link to='/'>Home</Link>
       </li>
-       <li className='font-bold'><Link to='/services'>Category</Link>
-        </li>
+      
        <li className='font-bold'><Link to='/blog'>Blog</Link>
         </li>
      

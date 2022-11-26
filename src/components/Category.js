@@ -8,7 +8,10 @@ const Categoty = () => {
     const category = useLoaderData()
     console.log(category);
     return (
-        <div className='flex'>
+		<div>
+			 <h2 className="text-3xl font-bold text-center mt-9">Our second-hand product categories</h2>
+            <p className='text-center mt-2 mb-7'>Vestibulum, diam vulputate amet cras in diam quis turpis curabitur tellus aliquet tellus iaculis tempus, sollicitudin massa duis eleifend egestas turpis sit etiam</p>
+			 <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1'> 
          {
                 category.map(product =>
                 <div className="flex flex-col max-w-lg p-6 space-y-6 overflow-hidden rounded-lg shadow-md dark:bg-gray-900 dark:text-gray-100">
@@ -31,12 +34,14 @@ const Categoty = () => {
 	</div>
 						
 				<label
-                htmlFor="my-modal-3" className="btn" >Book Now</label>
+                htmlFor="my-modal-3" className="btn bg-amber-500" >Book Now</label>
 			<BookingModal product={product}></BookingModal>
 </div>
                     )
 			}  
         </div>
+
+	   </div>
     );
 };
 

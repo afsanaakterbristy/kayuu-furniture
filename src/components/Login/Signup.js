@@ -32,7 +32,7 @@ const Signup = () => {
               const user = result.user;
                 console.log(user) 
                 setAuthToken(user)
-              saveUser(user?.email,user?.displayName, user?.photoURL,"Buyer")
+              saveUser(user?.email,user?.displayName,user?.photoURL,"Buyer")
              setIsBuyer(true)
              navigate(from, { replace: true })
               toast.success('Your Register success')
