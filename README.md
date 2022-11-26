@@ -1,3 +1,19 @@
+# Name:Kayuu Furniture
+
+
+
+# What I do in this Project?
+In this Project I have done many thing.I make there a navbar with the options: website logo, website name, a meaningful section, Blog.When I logged in, I will see more options like category,dashboard,and the logout button in the navbar.
+When I clicking on a category on the home page, they will be redirected to the /category/:id route, where they will see second-hand products under that category only.I Add two extra sections on the home page.On clicking the Book now button, a form in a modal will popup with the logged-in user name and email address, item name, and price.I will display errors when the user's email address or password doesn't match.Make the Environment variable to hide the firebase key.
+
+
+## Live Link
+Hosted in Netlify -> [Kayuu Furniture](https://services-745db.web.app/services)
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

@@ -46,6 +46,22 @@ const MyProducts = () => {
         })
     }
 
+    const handleAvailable = id => {
+        fetch(`http://localhost:5000/users/available/${id}`, {
+            method: 'PUT', 
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.modifiedCount > 0){
+                toast.success('Make available successful.')
+                refetch();
+            }
+        })
+    }
+
     if (isLoading) {
         return <Loading></Loading>
     }
@@ -53,15 +69,18 @@ const MyProducts = () => {
     return (
         <div>
             <h2 className='text-3xl font-semibold mb-4'>My Products</h2>
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto border rounded shadow">
                 <table className="table w-full">
                     <thead>
                         <tr>
                             <th></th>
                             <th>Avatar</th>
-                            <th>Name</th>                     
+                            <th>Product_Name</th>                     
                             <th>price</th>                     
-                            <th>Products</th>
+                            <th>Purchase Year</th>                     
+                            <th>Condition</th>                     
+                            <th>Category</th>                     
+                            <th>Sales_status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -76,10 +95,13 @@ const MyProducts = () => {
                                 </div></td>
                                 <td>{product.name}</td>
                                 <td>{product.price}</td>
-                                <td>{product.name}</td>
+                                <td>{product.purchase}</td>
+                                <td>{product.option}</td>
+                                <td>{product.category}</td>
+                                 <td> <button onClick={() => handleAvailable(product._id)} className='btn btn-xs btn-primary'>Available</button></td>
                                
                                 <td>
-                                    <label onClick={() => setDeleting(product)} htmlFor="confirmation-modal" className="btn btn-sm btn-error">Delete</label>
+                                    <label onClick={() => setDeleting(product)}  htmlFor="confirmation-modal" className="btn btn-sm btn-error">Delete</label>
                                 </td>
                             </tr>)
                         }
