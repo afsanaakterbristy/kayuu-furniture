@@ -22,9 +22,9 @@ const MyOrder = () => {
     })
     return (
         <div>
-            <h2>My order</h2>
+            <h2 className='text-2xl font-semibold mb-4'>My order</h2>
 
-            <div className="overflow-x-auto w-full">
+            <div className="overflow-x-auto w-full border shadow">
   <table className="table w-full">
  
     <thead>
@@ -50,7 +50,7 @@ const MyOrder = () => {
           <div className="flex items-center space-x-3">
             <div className="avatar">
               <div className="mask mask-squircle w-12 h-12">
-                <img src="/tailwind-css-component-profile-2@56w.png" alt="Avatar Tailwind CSS Component" />
+                <img src={booking.picture} alt="Avatar Tailwind CSS Component" />
               </div>
             </div>
             

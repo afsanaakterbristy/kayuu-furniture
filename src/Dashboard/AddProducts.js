@@ -1,13 +1,24 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useContext} from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import Loading from '../components/Shareds/Loading';
+import { AuthContext } from '../contexts/AuthProvider';
+import useAdmin from '../Hooks/useAdmin';
+import useSeller from '../Hooks/useSeller';
+import useVerify from '../Hooks/useVerify';
+
 
 //only seller korte parbe ty private seller hobe privabe admin at moto
 const AddProducts = () => {
-    
+   const { user } = useContext(AuthContext)
+  
+  const [isAdmin] = useAdmin(user?.email)
+  const [isVerify] = useVerify(user?.email)
+  const [isSeller] = useSeller(user?.email)
+ 
+  
     const { register, handleSubmit, formState: { errors } } = useForm();
 
         const imageHostKey = process.env.REACT_APP_imgbb_key;
@@ -24,6 +35,7 @@ const AddProducts = () => {
     })
     
     const handleAddProducts = data => {
+
       const image = data.image[0];
         const formData = new FormData();
         formData.append('image', image);
@@ -67,13 +79,14 @@ const AddProducts = () => {
             }
         })
     }
+   
 
     if (isLoading) {
         <Loading></Loading>
     }
     return (
         <div>
-            <h2>Add A Product</h2>
+            <h2 className='text-3xl font-bold text-center'>Add A Product</h2>
             <div className='border p-[50px] m-[50px] w-96  '>
                    <form onSubmit={handleSubmit(handleAddProducts)}>
 
@@ -126,7 +139,7 @@ const AddProducts = () => {
                     <div className='flex'>
                         
 
-                          <div className="form-control w-full max-w-xs">
+      <div className="form-control w-full max-w-xs mr-3">
        <label className="label"><span className="label-text">Choice One</span>
       </label>
               
@@ -138,7 +151,9 @@ const AddProducts = () => {
             <option> fair</option>           
             </select>
                         
-      </div>      
+           </div> 
+            
+
         <div className="form-control w-full max-w-xs">
        <label className="label"><span className="label-text">Choice category</span>
       </label>
@@ -149,17 +164,19 @@ const AddProducts = () => {
             <option selected>Please select</option>
                {
                                     categories?.map(category => <option
-                                    value={category.category_id}>{category.category_id}</option>)                 
+                                    value={category.name}>{category.name}</option>)                 
               }      
                      
             </select>
                         
       </div> 
            </div>
-     
-                    <input className='btn  bg-amber-600 w-full mt-4' type="submit" value='Add Product' />
+            { isSeller && isVerify && !isAdmin &&
+                        <input className='btn  bg-amber-600 w-full mt-4' type="submit" value='Add Product' />
+             }
+                        
+                </form>
                    
-         </form>
    </div>
           
         </div>

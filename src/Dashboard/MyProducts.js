@@ -52,14 +52,16 @@ const MyProducts = () => {
 
     return (
         <div>
-            <h2 className="text-3xl">Manage Doctors: {products?.length}</h2>
+            <h2 className='text-3xl font-semibold mb-4'>My Products</h2>
             <div className="overflow-x-auto">
                 <table className="table w-full">
                     <thead>
                         <tr>
                             <th></th>
                             <th>Avatar</th>
-                            <th>Name</th>                          
+                            <th>Name</th>                     
+                            <th>price</th>                     
+                            <th>Products</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -72,6 +74,8 @@ const MyProducts = () => {
                                         <img src={product.image} alt="" />
                                     </div>
                                 </div></td>
+                                <td>{product.name}</td>
+                                <td>{product.price}</td>
                                 <td>{product.name}</td>
                                
                                 <td>

@@ -3,9 +3,12 @@ import Categoty from "../components/Category";
 import Login from "../components/Login/Login";
 import Signup from "../components/Login/Signup";
 import Home from "../components/Pages/Home/Home";
+import Bolg from "../components/Shareds/Bolg";
 import ErrorPage from "../components/Shareds/ErrorPage";
 import AddProducts from "../Dashboard/AddProducts";
 import Admin from "../Dashboard/Admin";
+import AllBuyer from "../Dashboard/AllBuyer";
+import AllSeller from "../Dashboard/AllSeller";
 import Dashboard from "../Dashboard/Dashboard";
 import MyOrder from "../Dashboard/MyOrder";
 import MyProducts from "../Dashboard/MyProducts";
@@ -41,6 +44,10 @@ const router = createBrowserRouter([
                 path: '/signup',
                 element:<Signup></Signup>
             },
+           {
+                path: '/blog',
+                element:<Bolg></Bolg>
+            },
         ]
     },
     {
@@ -73,6 +80,14 @@ const router = createBrowserRouter([
                 path: '/dashboard/payment/:id',
                 element: <Payment></Payment>,
                 loader:({params})=>fetch(`http://localhost:5000/bookings/${params.id}`)
+            },
+              {
+                path:'/dashboard/allbuyer',
+                element:<AllBuyer></AllBuyer>
+            },
+              {
+                path:'/dashboard/allseller',
+                element:<AllSeller></AllSeller>
             },
         ]
 
