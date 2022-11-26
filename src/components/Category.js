@@ -1,12 +1,15 @@
-import React from 'react';
-import { Link, useLoaderData } from 'react-router-dom';
+import React, { useContext } from 'react';
+import {  useLoaderData } from 'react-router-dom';
+import { AuthContext } from '../contexts/AuthProvider';
 import BookingModal from './Booking/BookingModal';
 
 
 const Categoty = () => {
 
     const category = useLoaderData()
-    console.log(category);
+	console.log(category);
+	const { user } = useContext(AuthContext)
+	console.log(user.photoURL)
     return (
 		<div>
 			 <h2 className="text-3xl font-bold text-center mt-9">Our second-hand product categories</h2>
@@ -15,13 +18,7 @@ const Categoty = () => {
          {
                 category.map(product =>
                 <div className="flex flex-col max-w-lg p-6 space-y-6 overflow-hidden rounded-lg shadow-md dark:bg-gray-900 dark:text-gray-100">
-	<div className="flex space-x-4">
-		<img alt="" src="https://source.unsplash.com/100x100/?portrait" className="object-cover w-12 h-12 rounded-full shadow dark:bg-gray-500" />
-		<div className="flex flex-col space-y-1">
-                                <Link rel="noopener noreferrer" href="#" className="text-sm font-semibold">{product.sellername}</Link>
-			<span className="text-xs dark:text-gray-400">4 hours ago</span>
-		</div>
-	</div>
+	
 	<div>
 		<img src={product.picture} alt="" className="object-cover w-full mb-4 h-60 sm:h-96 dark:bg-gray-500" />
 		<h2 className="mb-1 text-xl font-semibold">Name:{product.name}</h2>
@@ -31,6 +28,7 @@ const Categoty = () => {
 		<p className="text-sm dark:text-gray-400">Resale price:{product.resaleprice}</p>
 		<p className="text-sm dark:text-gray-400">Years of use:{product.yearsofuse}</p>
 		<p className="text-sm dark:text-gray-400">Codition:{product.codition}</p>
+		<p className="text-sm dark:text-gray-400">SellerName:{product.sellername}</p>
 	</div>
 						
 				<label
