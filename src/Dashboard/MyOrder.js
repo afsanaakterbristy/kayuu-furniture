@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import Loading from '../components/Shareds/Loading';
 import { AuthContext } from '../contexts/AuthProvider';
 
 const MyOrder = () => {
@@ -8,7 +9,7 @@ const MyOrder = () => {
       const { user } = useContext(AuthContext);
     const url = `http://localhost:5000/bookings?email=${user?.email}`
       
-    const { data: bookings = [] } = useQuery({
+    const { data: bookings=[],isLoading } = useQuery({
         queryKey: ['bookings', user?.email],
         queryFn: async () => {
             const res = await fetch(url,{
@@ -20,6 +21,11 @@ const MyOrder = () => {
             return data;
         }
     })
+  if(isLoading){
+    <Loading></Loading>
+  }
+
+  console.log('okkkkkkkkkkkkk',bookings?.length)
     return (
         <div>
             <h2 className='text-2xl font-semibold mb-4'>My order</h2>
@@ -50,7 +56,7 @@ const MyOrder = () => {
           <div className="flex items-center space-x-3">
             <div className="avatar">
               <div className="mask mask-squircle w-12 h-12">
-                <img src={booking.picture} alt="Avatar Tailwind CSS Component" />
+                <img src={booking.image} alt="Avatar Tailwind CSS Component" />
               </div>
             </div>
             

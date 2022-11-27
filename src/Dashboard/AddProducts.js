@@ -25,7 +25,7 @@ const AddProducts = () => {
 
     const navigate = useNavigate();
     
-    const { data: categories, isLoading } = useQuery({
+    const { data: categories=[], isLoading } = useQuery({
         queryKey: ['category'],
         queryFn: async () => {
             const res = await fetch('http://localhost:5000/allcategoryproduct');
@@ -50,14 +50,16 @@ const AddProducts = () => {
                 console.log(imgData.data.url);
                 const product = {
                     name: data.name, 
+                    sellername:data.sellername,
                     image: imgData.data.url,
-                    price: data.price,
+                    originalprice: data.originalprice,
+                    resaleprice: data.resaleprice,
                     number: data.number,
                     location: data.location,
                     description: data.description,
                     purchase: data.purchase,
                     option: data.option,
-                    category:data.category
+                    category_id:data.category
                     
                 }
 
@@ -91,10 +93,17 @@ const AddProducts = () => {
                    <form onSubmit={handleSubmit(handleAddProducts)}>
 
     <div className="form-control w-full max-w-xs">
-       <label className="label"><span className="label-text">Name</span>
+       <label className="label"><span className="label-text">Product Name</span>
       </label>
               <input type="text" className="input input-bordered w-full max-w-xs" {...register("name", { required: "Name is required" })} />
               {errors.name && <p role='alert'>{errors.name?.message}</p>}
+                    </div>
+                    
+                     <div className="form-control w-full max-w-xs">
+       <label className="label"><span className="label-text">Seller Name</span>
+      </label>
+              <input type="text" defaultValue={user.displayName} readOnly className="input input-bordered w-full max-w-xs" {...register("sellername", { required: "sellername is required" })} />
+              {errors.sellername && <p role='alert'>{errors.sellername?.message}</p>}
       </div>
         <div className="form-control w-full max-w-xs">
        <label className="label"><span className="label-text">Photo</span>
@@ -103,10 +112,16 @@ const AddProducts = () => {
               {errors.image && <p role='alert'>{errors.image?.message}</p>}
       </div>         
     <div className="form-control w-full max-w-xs">
-       <label className="label"><span className="label-text">price</span>
+       <label className="label"><span className="label-text">Originalprice</span>
       </label>
-              <input type="text" className="input input-bordered w-full max-w-xs" {...register("price", { required: "price is required" })} />
-              {errors.price && <p role='alert'>{errors.price?.message}</p>}
+              <input type="text" className="input input-bordered w-full max-w-xs" {...register("originalprice", { required: "originalprice is required" })} />
+              {errors.originalprice && <p role='alert'>{errors.originalprice?.message}</p>}
+      </div>        
+    <div className="form-control w-full max-w-xs">
+       <label className="label"><span className="label-text">resaleprice</span>
+      </label>
+              <input type="text" className="input input-bordered w-full max-w-xs" {...register("resaleprice", { required: "resaleprice is required" })} />
+              {errors.resaleprice && <p role='alert'>{errors.resaleprice?.message}</p>}
       </div>        
     <div className="form-control w-full max-w-xs">
        <label className="label"><span className="label-text">mobile number</span>
@@ -163,13 +178,20 @@ const AddProducts = () => {
             {errors.category && <p role='alert'>{errors.category?.message}</p>}
             <option selected>Please select</option>
                {
-                                    categories?.map(category => <option
-                                    value={category.name}>{category.name}</option>)                 
+                categories?.map(category =>
+                  
+                         <option
+                        value={category._id}>{category.name}</option>
+                
+                   
+                )                 
               }      
                      
             </select>
-                        
-      </div> 
+                         
+                        </div>
+
+                      
                  </div>
                     
                     {

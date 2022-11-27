@@ -1,9 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
-import Categoty from "../components/Category";
+//import Categoty from "../components/Category";
 import Login from "../components/Login/Login";
 import Signup from "../components/Login/Signup";
 import Home from "../components/Pages/Home/Home";
 import Bolg from "../components/Shareds/Bolg";
+import CategoryTwo from "../components/Shareds/CategoryTwo";
 import ErrorPage from "../components/Shareds/ErrorPage";
 import AddProducts from "../Dashboard/AddProducts";
 import Admin from "../Dashboard/Admin";
@@ -32,10 +33,16 @@ const router = createBrowserRouter([
                 path: '/',
                 element:<Home></Home>
             },
+        //    { 
+        //         path: '/categorys/:id',
+        //         element:<PrivateRoute><Categoty></Categoty></PrivateRoute>,
+        //         loader:({params})=>fetch(`http://localhost:5000/categorys/${params.id}`)
+        //     },
+            // this is extrat for test
            {
-                path: '/categorys/:id',
-                element:<PrivateRoute><Categoty></Categoty></PrivateRoute>,
-                loader:({params})=>fetch(`http://localhost:5000/categorys/${params.id}`)
+                path: '/category/:id',
+               element: <PrivateRoute><CategoryTwo></CategoryTwo></PrivateRoute>,
+                loader:({params})=>fetch(`http://localhost:5000/categorystwo/${params.id}`)
             },
            {
                 path: '/login',

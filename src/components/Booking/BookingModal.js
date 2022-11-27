@@ -3,9 +3,9 @@ import toast from 'react-hot-toast';
 import { AuthContext } from '../../contexts/AuthProvider';
 
 const BookingModal = ({ product }) => {
-    const {name:productsname,resaleprice,time,picture}=product
+    const {name:productsname,resaleprice,time,image}=product
     const { user } = useContext(AuthContext)
-
+ 
 
     const handleBooking = (e) => {
          e.preventDefault();
@@ -17,7 +17,7 @@ const BookingModal = ({ product }) => {
         const resaleprice = form.resaleprice.value;
         const location = form.location.value;
         const lastly = form.lastly.value;
-        const picture = form.picture.value;
+        const image = form.image.value;
         console.log(time,name, email ,lastly, phone,location,resaleprice)
           const booking = {
             time,
@@ -28,7 +28,7 @@ const BookingModal = ({ product }) => {
              phone,
              location,
              lastly,
-             picture
+             image
         }
         console.log(booking)
        
@@ -63,8 +63,8 @@ const BookingModal = ({ product }) => {
     <form onSubmit={handleBooking} className='mt-10'>
         <input name='name' type="name" defaultValue={user?.displayName} readOnly placeholder="Type here" className="input input-bordered w-full mb-4" />
         <input name='email' type="email" defaultValue={user?.email} readOnly placeholder="Type here" className="input input-bordered w-full mb-4" />
-        <input name='picture' type="picture" defaultValue={picture} readOnly placeholder="" className="input input-bordered w-full mb-4" />
-        <input name='time' type="text" defaultValue={time} readOnly placeholder="Type here" className="input input-bordered w-full mb-4" />
+        <input name='image' type="" defaultValue={image} readOnly placeholder="" className="input input-bordered w-full mb-4" />
+        <input name='time' type="text" defaultValue={time}  placeholder="time" className="input input-bordered w-full mb-4" />
         <input name='resaleprice' defaultValue={resaleprice} readOnly type="text" placeholder="Type here" className="input input-bordered w-full mb-4" />
         <input name='phone' type="text" placeholder="Phone Number" className="input input-bordered w-full mb-4" />
            <input name='location' type="text" placeholder="meeting location" className="input input-bordered w-full mb-4" />             

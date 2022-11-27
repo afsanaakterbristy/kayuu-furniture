@@ -11,7 +11,7 @@ const MyProducts = () => {
         setDeleting(null);
     }
 
-    const { data: products, isLoading, refetch } = useQuery({
+    const { data: products=[], isLoading, refetch } = useQuery({
         queryKey: ['products'],
         queryFn: async () => {
             try {
@@ -78,9 +78,9 @@ const MyProducts = () => {
                             <th>Product_Name</th>                     
                             <th>price</th>                     
                             <th>Purchase Year</th>                     
-                            <th>Condition</th>                     
-                            <th>Category</th>                     
-                            <th>Sales_status</th>
+                            <th>Condition</th>
+                            <th>Sales_status</th>         
+                            <th>Advertised</th>    
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -97,8 +97,9 @@ const MyProducts = () => {
                                 <td>{product.price}</td>
                                 <td>{product.purchase}</td>
                                 <td>{product.option}</td>
-                                <td>{product.category}</td>
-                                 <td> <button onClick={() => handleAvailable(product._id)} className='btn btn-xs btn-primary'>Available</button></td>
+                                <td>sold</td>
+                               
+                                 <td> <button onClick={() => handleAvailable(product._id)} className='btn btn-xs btn-primary'>Advertised</button></td>
                                
                                 <td>
                                     <label onClick={() => setDeleting(product)}  htmlFor="confirmation-modal" className="btn btn-sm btn-error">Delete</label>

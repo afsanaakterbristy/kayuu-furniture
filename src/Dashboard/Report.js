@@ -4,11 +4,11 @@ import toast from 'react-hot-toast';
 
 const Report = () => {
 
-    const { data: categorys,refetch } = useQuery({
+    const { data: categorys=[],refetch } = useQuery({
         queryKey: ['categorys'],
         queryFn: async () => {
             try {
-                const res = await fetch('http://localhost:5000/allcategory', {
+                const res = await fetch('http://localhost:5000/producttwo', {
                     headers: {
                         authorization: `bearer ${localStorage.getItem('accessToken')}`
                     }
@@ -46,7 +46,7 @@ const Report = () => {
           
             {
                 categorys?.map(category => <div>
-                { category?.role ==='report'?
+                { category?.report ==='report'?
                   <a
         href="/"
         aria-label="View Item"
@@ -54,7 +54,7 @@ const Report = () => {
       >
         <div className="flex h-full">
           <img
-            src={category.picture}
+            src={category.image}
             className="object-cover w-full h-48"
             alt=""
           />
@@ -68,7 +68,8 @@ const Report = () => {
             </div>
           </div>
         </div>
-                  </a> :
+                        </a>
+                        :
                   <></>
       }
               </div>)
