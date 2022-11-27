@@ -1,3 +1,5 @@
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import Navber from '../components/Shareds/Navber';
@@ -21,10 +23,14 @@ const DashboardLayout = () => {
           <div className="h-full p-3 space-y-2 w-60 dark:bg-gray-900 dark:text-gray-100">
             
 
-              <div className="flex items-center p-2 space-x-4 mt-3 mb-5">
-		     <img src={user?.photoURL} alt="" className="w-12 h-12 rounded-full dark:bg-gray-500" />
-		    <div>
+            <div className="flex items-center p-2 space-x-4 mt-3 mb-5">
+              {  user?.photoURL?
+                <img src={user?.photoURL} alt="" className="w-12 h-12 rounded-full dark:bg-gray-500" /> :
+                <><FontAwesomeIcon icon={faUser}/></>
+              }
+      <div>
                 <div className='flex'>
+              
                         <h2 className="text-lg font-semibold">{ user?.displayName}</h2>
                        
                     </div>     

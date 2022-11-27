@@ -59,7 +59,9 @@ const AddProducts = () => {
                     description: data.description,
                     purchase: data.purchase,
                     option: data.option,
-                    category_id:data.category
+                    category_id: data.category,
+                    time:new Date().toLocaleString(),
+                    email:data.email
                     
                 }
 
@@ -99,11 +101,18 @@ const AddProducts = () => {
               {errors.name && <p role='alert'>{errors.name?.message}</p>}
                     </div>
                     
-                     <div className="form-control w-full max-w-xs">
+        <div className="form-control w-full max-w-xs">
        <label className="label"><span className="label-text">Seller Name</span>
       </label>
               <input type="text" defaultValue={user.displayName} readOnly className="input input-bordered w-full max-w-xs" {...register("sellername", { required: "sellername is required" })} />
               {errors.sellername && <p role='alert'>{errors.sellername?.message}</p>}
+      </div>
+
+         <div className="form-control w-full max-w-xs">
+       <label className="label"><span className="label-text">Email</span>
+      </label>
+              <input type="text" defaultValue={user?.email} readOnly className="input input-bordered w-full max-w-xs" {...register("email", { required: "email is required" })} />
+              {errors.email && <p role='alert'>{errors.email?.message}</p>}
       </div>
         <div className="form-control w-full max-w-xs">
        <label className="label"><span className="label-text">Photo</span>

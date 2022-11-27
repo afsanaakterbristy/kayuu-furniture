@@ -31,7 +31,7 @@ const Login = () => {
                 const user = result.user;
               console.log(user);
               setLoginUserEmail(data.email)
-            //  navigate(from, {replace: true});
+         
             })
             .catch(error => {
                 console.log(error.message)
@@ -48,7 +48,7 @@ const Login = () => {
                 console.log(user) 
             
                saveUser(user?.displayName,user?.email, user?.photoURL,"Buyer")
-             navigate(from, { replace: true })
+           
               toast.success('Your Login success')
         }).catch(error=>console.error(error))
   }  

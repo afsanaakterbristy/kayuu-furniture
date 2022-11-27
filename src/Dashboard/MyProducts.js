@@ -1,8 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import ConfirmationModal from '../components/Shareds/ConfirmationModal';
 import toast from 'react-hot-toast';
 import Loading from '../components/Shareds/Loading';
+import { AuthContext } from '../contexts/AuthProvider';
 
 const MyProducts = () => {
     const [deleting, setDeleting] = useState(null);
@@ -11,11 +12,14 @@ const MyProducts = () => {
         setDeleting(null);
     }
 
+    const { user } = useContext(AuthContext);
+    const url = `http://localhost:5000/products?email=${user?.email}`
+
     const { data: products=[], isLoading, refetch } = useQuery({
         queryKey: ['products'],
         queryFn: async () => {
             try {
-                const res = await fetch('http://localhost:5000/product', {
+                const res = await fetch(url, {
                     headers: {
                         authorization: `bearer ${localStorage.getItem('accessToken')}`
                     }

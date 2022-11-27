@@ -6,7 +6,7 @@ import { AuthContext } from '../contexts/AuthProvider';
 
 const MyOrder = () => {
 
-      const { user } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     const url = `http://localhost:5000/bookings?email=${user?.email}`
       
     const { data: bookings=[],isLoading } = useQuery({

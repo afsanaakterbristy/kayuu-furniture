@@ -2,11 +2,10 @@ import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 
 import useToken from '../../Hooks/useToken';
-
 
 
 const Signup = () => {
@@ -15,8 +14,7 @@ const Signup = () => {
        const [signupError, setSignupError] = useState();
     const { createUser, updateUserProfile ,providerLogin} = useContext(AuthContext);
     const [createUserEmail, setCreateUserEmail] = useState('')
-    const location = useLocation()
-     const from=location.state?.from?.pathname||'/'
+    
  const [token]=useToken(createUserEmail)
     const navigate = useNavigate()
   
@@ -38,7 +36,7 @@ const Signup = () => {
                
               saveUser(user?.displayName,user?.email,user?.photoURL,"Buyer")
          
-             navigate(from, { replace: true })
+          
               toast.success('Your Register success')
         }).catch(error=>console.error(error))
     }  
