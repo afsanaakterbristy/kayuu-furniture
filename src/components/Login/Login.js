@@ -5,6 +5,7 @@ import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 import useToken from '../../Hooks/useToken';
+import Loading from '../Shareds/Loading';
 
 
 
@@ -12,14 +13,14 @@ const Login = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
      const [loginError, setLoginError] = useState();
-    const { signIn,providerLogin } = useContext(AuthContext);
+    const { signIn,providerLogin,loading } = useContext(AuthContext);
   const location = useLocation();
   const [loginUserEmail, setLoginUserEmail] = useState('');
   const [token]=useToken(loginUserEmail)
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || '/';
   useEffect(() => {
-     if (token) {
+   if (token) {
     navigate(from, {replace: true});
   } 
  },[token,from])
@@ -71,7 +72,10 @@ const Login = () => {
         })
     }
     
-
+  if (loading) {
+  return <Loading></Loading>
+  }
+  
 
     return (
         <div className='h-[800px] flex justify-center items-center'>

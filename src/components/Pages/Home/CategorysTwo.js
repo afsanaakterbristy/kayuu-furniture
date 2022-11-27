@@ -1,17 +1,18 @@
-import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from "axios";
+
 
 
 const CategorysTwo = () => {
-     const {data:categorystwo=[]} = useQuery({
-        queryKey: ['categorystwo'],
-        queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/categorystwo`);
-            const data = await res.json();
-            return data;
-    }
-    })
+
+      const [categorystwo,setCategorystwo]=useState([]) 
+    
+    useEffect(()=>{  
+    axios.get("http://localhost:5000/categorystwo")
+        .then((res) => setCategorystwo(res.data));
+},[]);
+    
     return (
         <div>
             <h2 className="text-3xl font-bold text-center mt-9">Our second-hand product categories</h2>

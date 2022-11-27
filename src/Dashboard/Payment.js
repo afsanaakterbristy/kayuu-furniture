@@ -14,7 +14,7 @@ const Payment = () => {
     if(navigation.state === "loading"){
         return <Loading></Loading>
     }
-    return (
+    return ( 
         <div>
             <h3 className="text-3xl mb-4">Payment For {productsname}</h3>
             <p className="text-xl">Your amount ${resaleprice}</p>

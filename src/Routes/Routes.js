@@ -1,5 +1,4 @@
 import { createBrowserRouter } from "react-router-dom";
-//import Categoty from "../components/Category";
 import Login from "../components/Login/Login";
 import Signup from "../components/Login/Signup";
 import Home from "../components/Pages/Home/Home";
@@ -33,12 +32,7 @@ const router = createBrowserRouter([
                 path: '/',
                 element:<Home></Home>
             },
-        //    { 
-        //         path: '/categorys/:id',
-        //         element:<PrivateRoute><Categoty></Categoty></PrivateRoute>,
-        //         loader:({params})=>fetch(`http://localhost:5000/categorys/${params.id}`)
-        //     },
-            // this is extrat for test
+        
            {
                 path: '/category/:id',
                element: <PrivateRoute><CategoryTwo></CategoryTwo></PrivateRoute>,

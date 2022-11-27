@@ -1,15 +1,16 @@
 import {  faCheckCircle, faClock } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import {  useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 import BookingModal from '../Booking/BookingModal';
 
 
-const CategoryTwo = () => {
+const CategoryTwo = () => { 
    
-  const category = useLoaderData()
+	const category = useLoaderData()
+	const [booking,setBooking]=useState(null)
 	console.log(category);
 	const { user } = useContext(AuthContext)
 	console.log(user.photoURL)
@@ -50,21 +51,28 @@ const CategoryTwo = () => {
 		<p className="text-sm dark:text-gray-400"><strong>Resale price: </strong>{product.resaleprice}</p>
 		<p className="text-sm dark:text-gray-400"><strong>Years of use: </strong>{product.purchase}</p>
 		<p className="text-sm dark:text-gray-400"><strong>Codition: </strong>{product.option}</p>
-		<p className="text-sm dark:text-gray-400"><strong>SellerName: </strong>{product.sellername} <FontAwesomeIcon className=' text-blue-900' icon={faCheckCircle} /></p>
+		<p className="text-sm dark:text-gray-400"><strong>SellerName: </strong>{product.sellername}{ product.sellerverify && <FontAwesomeIcon className=' text-blue-900' icon={faCheckCircle} />}</p>
 	</div>
 			<div className='flex justify-between'>
 
-				<label
+				<label onClick={()=>setBooking(product)}
 				htmlFor="my-modal-3" className="btn bg-amber-500" >Book Now</label>
 						
-			<BookingModal product={product}></BookingModal>
+							{/* {  booking &&
+								<BookingModal product={product}></BookingModal>
+							} */}
+							
 			<button  onClick={()=>handleReport(product._id)} className='btn bg-amber-500 rounded-full'><FontAwesomeIcon className='text-2xl' icon={faClock}/></button>
 			</div>
 			
               
 </div>
                     )
-			}  
+				}  
+				
+					{  booking &&
+								<BookingModal product={booking} closemodal={setBooking}></BookingModal>
+							}
         </div>
 
 	   </div>

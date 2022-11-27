@@ -5,8 +5,7 @@ import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import Loading from '../components/Shareds/Loading';
 import { AuthContext } from '../contexts/AuthProvider';
-import useSeller from '../Hooks/useSeller';
-import useVerify from '../Hooks/useVerify';
+
 
 
 
@@ -15,8 +14,7 @@ import useVerify from '../Hooks/useVerify';
 const AddProducts = () => {
 
     const { user } = useContext(AuthContext)
- const [isSeller] = useSeller(user?.email)
- const [isVerify] = useVerify(user?.email)
+ 
  
   
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -61,7 +59,8 @@ const AddProducts = () => {
                     option: data.option,
                     category_id: data.category,
                     time:new Date().toLocaleString(),
-                    email:data.email
+                    email: data.email,
+                    status:'unsold'
                     
                 }
 
@@ -204,15 +203,10 @@ const AddProducts = () => {
                  </div>
                     
                     {
-                        isSeller && isVerify &&
-                        <input className='btn  bg-amber-600 w-full mt-4' type="submit" value='Add Product' />}
-                    {
-                        !isVerify &&
-                        <>
                         
-                        <h2 className="font-semibold">You need verify for added products</h2>
-                        </>
+                        <input className='btn  bg-amber-600 w-full mt-4' type="submit" value='Add Product' />
                     }
+                  
           
                         
                 </form>

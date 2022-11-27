@@ -6,13 +6,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 
 import useToken from '../../Hooks/useToken';
+import Loading from '../Shareds/Loading';
 
 
 const Signup = () => {
 
       const { register, handleSubmit,formState:{errors} } = useForm();
        const [signupError, setSignupError] = useState();
-    const { createUser, updateUserProfile ,providerLogin} = useContext(AuthContext);
+    const { createUser, updateUserProfile ,providerLogin,loading} = useContext(AuthContext);
     const [createUserEmail, setCreateUserEmail] = useState('')
     
  const [token]=useToken(createUserEmail)
@@ -86,6 +87,10 @@ const Signup = () => {
         updateUserProfile(profile)
         .then(() => {})
         .catch(error => console.error(error))
+    }
+    
+     if (loading) {
+  return <Loading></Loading>
   }
     return (
         <div className='h-[800px] flex justify-center items-center'>

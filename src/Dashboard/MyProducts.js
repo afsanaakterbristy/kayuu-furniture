@@ -5,9 +5,10 @@ import toast from 'react-hot-toast';
 import Loading from '../components/Shareds/Loading';
 import { AuthContext } from '../contexts/AuthProvider';
 
+
 const MyProducts = () => {
     const [deleting, setDeleting] = useState(null);
-
+   
     const closeModal = () => {
         setDeleting(null);
     }
@@ -33,7 +34,7 @@ const MyProducts = () => {
         }
     });
 
-    
+    console.log(products)
     const handleDelete = product => {
         fetch(`http://localhost:5000/product/${product._id}`, {
             method: 'DELETE', 
@@ -66,12 +67,18 @@ const MyProducts = () => {
         })
     }
 
+    // for sold condition
+
+
+
     if (isLoading) {
         return <Loading></Loading>
     }
-
+    
+   console.log(products)
     return (
         <div>
+          
             <h2 className='text-3xl font-semibold mb-4'>My Products</h2>
             <div className="overflow-x-auto border rounded shadow">
                 <table className="table w-full">
@@ -80,7 +87,7 @@ const MyProducts = () => {
                             <th></th>
                             <th>Avatar</th>
                             <th>Product_Name</th>                     
-                            <th>price</th>                     
+                            <th>Resaleprice</th>                     
                             <th>Purchase Year</th>                     
                             <th>Condition</th>
                             <th>Sales_status</th>         
@@ -98,10 +105,16 @@ const MyProducts = () => {
                                     </div>
                                 </div></td>
                                 <td>{product.name}</td>
-                                <td>{product.price}</td>
+                                <td>{product.resaleprice}</td>
                                 <td>{product.purchase}</td>
                                 <td>{product.option}</td>
-                                <td>sold</td>
+                                <td> {product?.status==="sold"?
+                                    
+                                    <label className='btn btn-xs btn-primary'>Sold</label> :
+                                     <label className='btn btn-xs btn-primary'>Available</label>
+                                    }
+                                
+                                </td>
                                
                                  <td> <button onClick={() => handleAvailable(product._id)} className='btn btn-xs btn-primary'>Advertised</button></td>
                                
