@@ -14,7 +14,7 @@ const MyProducts = () => {
     }
 
     const { user } = useContext(AuthContext);
-    const url = `http://localhost:5000/products?email=${user?.email}`
+    const url = `https://products-resale-server-afsanaakterbristy.vercel.app/products?email=${user?.email}`
 
     const { data: products=[], isLoading, refetch } = useQuery({
         queryKey: ['products'],
@@ -36,7 +36,7 @@ const MyProducts = () => {
 
     console.log(products)
     const handleDelete = product => {
-        fetch(`http://localhost:5000/product/${product._id}`, {
+        fetch(`https://products-resale-server-afsanaakterbristy.vercel.app/product/${product._id}`, {
             method: 'DELETE', 
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -52,7 +52,7 @@ const MyProducts = () => {
     }
 
     const handleAvailable = id => {
-        fetch(`http://localhost:5000/users/available/${id}`, {
+        fetch(`https://products-resale-server-afsanaakterbristy.vercel.app/users/available/${id}`, {
             method: 'PUT', 
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`

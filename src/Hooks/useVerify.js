@@ -5,7 +5,7 @@ const useVerify = email => {
     const [isVerifyLoading, setIsVerifyLoading] = useState(true);
     useEffect(() => {
         if (email) {
-            fetch(`http://localhost:5000/users/sellerverify/${email}`)
+            fetch(`https://products-resale-server-afsanaakterbristy.vercel.app/users/sellerverify/${email}`)
                 .then(res => res.json())
                 .then(data => {
                     console.log(data);

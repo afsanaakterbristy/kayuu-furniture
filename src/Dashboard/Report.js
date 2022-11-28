@@ -9,7 +9,7 @@ const Report = () => {
         queryKey: ['categorys'],
         queryFn: async () => {
             try {
-                const res = await fetch('http://localhost:5000/producttwo', {
+                const res = await fetch('https://products-resale-server-afsanaakterbristy.vercel.app/producttwo', {
                     headers: {
                         authorization: `bearer ${localStorage.getItem('accessToken')}`
                     }
@@ -24,7 +24,7 @@ const Report = () => {
     });
 // for deleteing role change
  const handleReport = id => {
-        fetch(`http://localhost:5000/users/notreport/${id}`, {
+        fetch(`https://products-resale-server-afsanaakterbristy.vercel.app/users/notreport/${id}`, {
             method: 'PUT', 
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`

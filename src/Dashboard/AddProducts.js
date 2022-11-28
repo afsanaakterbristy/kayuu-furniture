@@ -17,7 +17,7 @@ const AddProducts = () => {
     const { data: categories=[], isLoading } = useQuery({
         queryKey: ['category'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/allcategoryproduct');
+            const res = await fetch('https://products-resale-server-afsanaakterbristy.vercel.app/allcategoryproduct');
             const data = await res.json();
             return data;
         }
@@ -56,7 +56,7 @@ const AddProducts = () => {
                 }
 
                 // save  information to the database
-                fetch('http://localhost:5000/product', {
+                fetch('https://products-resale-server-afsanaakterbristy.vercel.app/product', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json', 

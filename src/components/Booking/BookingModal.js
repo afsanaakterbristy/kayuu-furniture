@@ -34,7 +34,7 @@ const BookingModal = ({ product,closemodal }) => {
         }
         console.log(booking)
        
-     fetch('http://localhost:5000/bookings', {
+     fetch('https://products-resale-server-afsanaakterbristy.vercel.app/bookings', {
             method: 'POST',
             headers: {
                 'content-type':'application/json'

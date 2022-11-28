@@ -8,7 +8,7 @@ const CategorysTwo = () => {
     const [categorystwo,setCategorystwo]=useState([]) 
     
     useEffect(()=>{  
-    axios.get("http://localhost:5000/categorystwo")
+    axios.get("https://products-resale-server-afsanaakterbristy.vercel.app/categorystwo")
         .then((res) => setCategorystwo(res.data));
 },[]);
     

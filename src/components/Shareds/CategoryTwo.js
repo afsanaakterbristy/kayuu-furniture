@@ -16,7 +16,7 @@ const CategoryTwo = () => {
 	console.log(user.photoURL)
     
 	 const handleReport = id => {
-        fetch(`http://localhost:5000/users/report/${id}`, {
+        fetch(`https://products-resale-server-afsanaakterbristy.vercel.app/users/report/${id}`, {
             method: 'PUT', 
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`

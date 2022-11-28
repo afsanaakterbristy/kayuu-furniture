@@ -8,7 +8,7 @@ When I clicking on a category on the home page, they will be redirected to the /
 
 
 ## Live Link
-Hosted in Netlify -> [Kayuu Furniture](https://services-745db.web.app/services)
+Hosted in Netlify -> [Kayuu Furniture](https://products-49b3a.web.app)
 
 
 

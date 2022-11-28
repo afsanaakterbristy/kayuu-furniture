@@ -54,7 +54,7 @@ const Login = () => {
   
      const saveUser = (name, email,photo,option) => {
         const user = { name, email,photo,option};
-        fetch(`http://localhost:5000/users`, {
+        fetch(`https://products-resale-server-afsanaakterbristy.vercel.app/users`, {
             method: "POST",
             headers: {
                 'content-type':'application/json'

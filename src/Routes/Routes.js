@@ -36,7 +36,7 @@ const router = createBrowserRouter([
            {
                 path: '/category/:id',
                element: <PrivateRoute><CategoryTwo></CategoryTwo></PrivateRoute>,
-                loader:({params})=>fetch(`http://localhost:5000/categorystwo/${params.id}`)
+                loader:({params})=>fetch(`https://products-resale-server-afsanaakterbristy.vercel.app/categorystwo/${params.id}`)
             },
            {
                 path: '/login',
@@ -81,7 +81,7 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/payment/:id',
                 element: <BuyerRoute><Payment></Payment></BuyerRoute>,
-                loader:({params})=>fetch(`http://localhost:5000/bookings/${params.id}`)
+                loader:({params})=>fetch(`https://products-resale-server-afsanaakterbristy.vercel.app/bookings/${params.id}`)
             },
               {
                 path:'/dashboard/allbuyer',
