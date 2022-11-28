@@ -3,10 +3,9 @@ import { Link } from 'react-router-dom';
 import axios from "axios";
 
 
-
 const CategorysTwo = () => {
 
-      const [categorystwo,setCategorystwo]=useState([]) 
+    const [categorystwo,setCategorystwo]=useState([]) 
     
     useEffect(()=>{  
     axios.get("http://localhost:5000/categorystwo")
@@ -19,8 +18,8 @@ const CategorysTwo = () => {
             <p className='text-center mt-2 mb-3'>Vestibulum, diam vulputate amet cras in diam quis turpis curabitur tellus aliquet tellus iaculis tempus, sollicitudin massa duis eleifend egestas turpis sit etiam</p>
              <div className='grid lg:grid-cols-3 md:grid-cols-2 gap-1 mt-[40px] ml-[40px]'>
             {
-                categorystwo.map(category =>
-               <div key={category._id} className="card card-compact w-96 bg-base-100 shadow-xl">
+            categorystwo.map(category =>
+            <div key={category._id} className="card card-compact w-96 bg-base-100 shadow-xl">
            <figure><img className='h-[250px] w-full' src={category.img} alt="Shoes" /></figure>
              <div className="card-body">
      

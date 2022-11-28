@@ -4,7 +4,7 @@ import toast from 'react-hot-toast';
 import ConfirmationModal from '../components/Shareds/ConfirmationModal';
 import Loading from '../components/Shareds/Loading';
 
-//all user work
+
 const Admin = () => {
 
     const [deleting, setDeleting] = useState(null);
@@ -58,7 +58,7 @@ const Admin = () => {
     }
     return (
         <div>
-            <h2>Admin Role</h2>
+             <h2 className='text-xl font-bold mb-4'>Admin Role</h2>
              <div className="overflow-x-auto">
   <table className="table w-full">
     <thead>

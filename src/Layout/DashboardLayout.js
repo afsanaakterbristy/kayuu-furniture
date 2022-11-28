@@ -9,8 +9,7 @@ import useBuyer from '../Hooks/useBuyer';
 import useSeller from '../Hooks/useSeller';
 
 const DashboardLayout = () => {
-  const { user } = useContext(AuthContext)
-  
+  const { user } = useContext(AuthContext)  
   const [isAdmin] = useAdmin(user?.email)
   const [isBuyer] = useBuyer(user?.email)
   const [isSeller] = useSeller(user?.email)
@@ -45,9 +44,7 @@ const DashboardLayout = () => {
 	<div className="divide-y divide-gray-700">
 		<div className="drawer drawer-mobile">
   <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-  <div className="drawer-content flex flex-col items-center justify-center">
-       
-   
+  <div className="drawer-content flex flex-col items-center justify-center"> 
   </div> 
   <div className="drawer-side">
     <label htmlFor="my-drawer-2" className="drawer-overlay"></label> 

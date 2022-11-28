@@ -7,20 +7,11 @@ import Loading from '../components/Shareds/Loading';
 import { AuthContext } from '../contexts/AuthProvider';
 
 
-
-
-
-//only seller korte parbe ty private seller hobe privabe admin at moto
 const AddProducts = () => {
 
     const { user } = useContext(AuthContext)
- 
- 
-  
     const { register, handleSubmit, formState: { errors } } = useForm();
-
-        const imageHostKey = process.env.REACT_APP_imgbb_key;
-
+    const imageHostKey = process.env.REACT_APP_imgbb_key;
     const navigate = useNavigate();
     
     const { data: categories=[], isLoading } = useQuery({
@@ -64,7 +55,7 @@ const AddProducts = () => {
                     
                 }
 
-                // save doctor information to the database
+                // save  information to the database
                 fetch('http://localhost:5000/product', {
                     method: 'POST',
                     headers: {
@@ -85,7 +76,7 @@ const AddProducts = () => {
    
 
     if (isLoading) {
-        <Loading></Loading>
+       return <Loading></Loading>
     }
     return (
         <div>
@@ -190,30 +181,21 @@ const AddProducts = () => {
                   
                          <option
                         value={category._id}>{category.name}</option>
-                
                    
                 )                 
-              }      
-                     
+              }                           
             </select>
-                         
-                        </div>
-
-                      
+                 </div>     
                  </div>
                     
                     {
                         
                         <input className='btn  bg-amber-600 w-full mt-4' type="submit" value='Add Product' />
                     }
-                  
-          
-                        
+                      
                 </form>
-                   
-   </div>
-          
-        </div>
+          </div>
+          </div>
     );
 };
 

@@ -8,12 +8,11 @@ import useToken from '../../Hooks/useToken';
 import Loading from '../Shareds/Loading';
 
 
-
 const Login = () => {
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
-     const [loginError, setLoginError] = useState();
-    const { signIn,providerLogin,loading } = useContext(AuthContext);
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  const [loginError, setLoginError] = useState();
+  const { signIn,providerLogin,loading } = useContext(AuthContext);
   const location = useLocation();
   const [loginUserEmail, setLoginUserEmail] = useState('');
   const [token]=useToken(loginUserEmail)
@@ -23,7 +22,8 @@ const Login = () => {
    if (token) {
     navigate(from, {replace: true});
   } 
- },[token,from])
+  }, [token, from])
+  
     const handleLogin = data => {
         setLoginError('')
         console.log(data)
@@ -39,17 +39,15 @@ const Login = () => {
                setLoginError(error.message);
             })
   }
-   //google
+   //google login
     const googleProvider=new GoogleAuthProvider()
     const handleGoogleSignIn = () => {
        
         providerLogin(googleProvider)
             .then(result => {
               const user = result.user;
-                console.log(user) 
-            
-               saveUser(user?.displayName,user?.email, user?.photoURL,"Buyer")
-           
+              console.log(user)            
+              saveUser(user?.displayName,user?.email, user?.photoURL,"Buyer")           
               toast.success('Your Login success')
         }).catch(error=>console.error(error))
   }  
@@ -78,7 +76,7 @@ const Login = () => {
   
 
     return (
-        <div className='h-[800px] flex justify-center items-center'>
+    <div className='h-[800px] flex justify-center items-center'>
             <div className='w-96 p-7 border'>
                 <h2 className='text-xl text-center'>Login</h2>
       <form onSubmit={handleSubmit(handleLogin)}>
@@ -96,17 +94,14 @@ const Login = () => {
                  {errors.password && <p role='alert'>{errors.password?.message}</p>}
         <label className="label"><span className="label-text">Forget password</span>
       </label>
-      </div>        
-     
-      
+      </div>                 
             <input className='btn  bg-amber-600 w-full mt-3' type="submit" value='Login' />
             <div>
               {
                 loginError && <p>{ loginError}</p>
               }
             </div>
-         </form>
-            
+        </form>            
                 <p>Don't have an account <Link className='text-accent' to='/signup'>please signup</Link></p>
                 <div className="divider">OR</div>
                 <button onClick={handleGoogleSignIn} className='btn btn-outline w-full'>CONTINUE WITH GOOGLE</button>

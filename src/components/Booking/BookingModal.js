@@ -34,7 +34,7 @@ const BookingModal = ({ product,closemodal }) => {
         }
         console.log(booking)
        
-  fetch('http://localhost:5000/bookings', {
+     fetch('http://localhost:5000/bookings', {
             method: 'POST',
             headers: {
                 'content-type':'application/json'
@@ -58,7 +58,7 @@ const BookingModal = ({ product,closemodal }) => {
     return (
         <div>
        <input type="checkbox" id="my-modal-3" className="modal-toggle" />
-<div className="modal">
+  <div className="modal">
   <div className="modal-box relative">
     <label htmlFor="my-modal-3" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
     <h3 className="text-lg font-bold">{productsname}</h3>
@@ -70,10 +70,10 @@ const BookingModal = ({ product,closemodal }) => {
         <input name='time' type="text" value={time}  placeholder="time" className="input input-bordered w-full mb-4" />
         <input name='resaleprice' value={resaleprice} readOnly type="text" placeholder="Type here" className="input input-bordered w-full mb-4" />
         <input name='phone' type="text" placeholder="Phone Number" className="input input-bordered w-full mb-4" />
-           <input name='location' type="text" placeholder="meeting location" className="input input-bordered w-full mb-4" />             
-           <input name='lastly' type="text" placeholder="lastly Message" className="input input-bordered w-full mb-4" />
+        <input name='location' type="text" placeholder="meeting location" className="input input-bordered w-full mb-4" />             
+        <input name='lastly' type="text" placeholder="lastly Message" className="input input-bordered w-full mb-4" />
            
-           <input  className=" btn bg-amber-500 w-full " type="submit" value="Submit" />
+        <input  className=" btn bg-amber-500 w-full " type="submit" value="Submit" />
     </form>
   </div>
 </div>

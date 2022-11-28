@@ -79,7 +79,7 @@ const Footer = () => {
 			</div>
 		</div>
 	</div>
-	<div className="py-6 text-sm text-center dark:text-gray-400">© 2022 Online Furniture Store. All rights reserved.</div>
+	<div className="py-6 text-sm text-center dark:text-gray-400">© 2022 Online Resale Furniture Store. All rights reserved.</div>
 </footer>
         </div>
     );

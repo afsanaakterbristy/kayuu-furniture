@@ -9,11 +9,9 @@ import Items from './Items';
 const Home = () => {
     return (
         <div>
-            <Header></Header>
-          
-             <Items></Items>
-            {/* <Categorys></Categorys> */}
-              <CategorysTwo></CategorysTwo>
+            <Header></Header>          
+            <Items></Items>           
+            <CategorysTwo></CategorysTwo>
             <Discount></Discount>
             <Choice></Choice>
            

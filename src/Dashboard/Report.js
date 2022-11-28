@@ -1,10 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import toast from 'react-hot-toast';
+import Loading from '../components/Shareds/Loading';
 
 const Report = () => {
 
-    const { data: categorys=[],refetch } = useQuery({
+    const { data: categorys=[],refetch,isLoading } = useQuery({
         queryKey: ['categorys'],
         queryFn: async () => {
             try {
@@ -37,7 +38,9 @@ const Report = () => {
             }
         })
     }
-
+    if (isLoading) {
+    return <Loading></Loading>
+    }
 
     return (
         <div className=''>
@@ -68,9 +71,9 @@ const Report = () => {
             </div>
           </div>
         </div>
-                        </a>
-                        :
-                  <></>
+           </a>
+             :
+           <></>
       }
               </div>)
             }

@@ -67,9 +67,6 @@ const MyProducts = () => {
         })
     }
 
-    // for sold condition
-
-
 
     if (isLoading) {
         return <Loading></Loading>

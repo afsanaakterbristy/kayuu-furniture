@@ -57,24 +57,16 @@ const CategoryTwo = () => {
 
 				<label onClick={()=>setBooking(product)}
 				htmlFor="my-modal-3" className="btn bg-amber-500" >Book Now</label>
-						
-							{/* {  booking &&
-								<BookingModal product={product}></BookingModal>
-							} */}
 							
 			<button  onClick={()=>handleReport(product._id)} className='btn bg-amber-500 rounded-full'><FontAwesomeIcon className='text-2xl' icon={faClock}/></button>
 			</div>
-			
-              
-</div>
-                    )
-				}  
-				
+			</div>
+                 )
+				}  				
 					{  booking &&
-								<BookingModal product={booking} closemodal={setBooking}></BookingModal>
-							}
+						<BookingModal product={booking} closemodal={setBooking}></BookingModal>
+					}
         </div>
-
 	   </div>
     );
 };

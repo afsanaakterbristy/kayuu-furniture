@@ -35,8 +35,7 @@ const MyOrder = () => {
  
     <thead>
       <tr>
-        <th>
-          
+        <th>          
         </th>
         <th>image</th>
         <th>title</th>
@@ -46,7 +45,7 @@ const MyOrder = () => {
     </thead>
     <tbody>
     
-       {           bookings &&
+       {        bookings &&
                 bookings?.map((booking,i) =>
              <tr key={i} >
         <th>
@@ -87,7 +86,7 @@ const MyOrder = () => {
     
   </table>
 </div>
-        </div>
+</div>
     );
 };
 

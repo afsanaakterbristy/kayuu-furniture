@@ -6,7 +6,7 @@ import toast from 'react-hot-toast';
 import ConfirmationModal from '../components/Shareds/ConfirmationModal';
 import Loading from '../components/Shareds/Loading';
 
-//all user work
+
 const AllSeller = () => {
 
     const [deleting, setDeleting] = useState(null);
@@ -57,14 +57,12 @@ const AllSeller = () => {
         })
     }
 
-
-
      if (isLoading) {
         return <Loading></Loading>
     }
     return (
         <div>
-            <h2>Admin Role</h2>
+            <h2 className='text-xl font-bold mb-4'>All Seller</h2>
              <div className="overflow-x-auto">
   <table className="table w-full">
     <thead>

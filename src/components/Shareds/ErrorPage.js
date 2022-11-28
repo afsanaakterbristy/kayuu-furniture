@@ -5,7 +5,7 @@ import { AuthContext } from '../../contexts/AuthProvider';
 const ErrorPage = () => {
     const {logOut}=useContext(AuthContext);
     const navigate=useNavigate()
-  const handleLogOut = () => {
+    const handleLogOut = () => {
     logOut()
     .then(()=>{
       navigate('/login')
@@ -33,7 +33,7 @@ const ErrorPage = () => {
               </Link>
          
                  <Link
-            // to='/login'
+          
             className='ml-2 px-4 py-3 font-semibold rounded bg-purple-900 hover:bg-gray-700 text-gray-100'
           >
             <button onClick={handleLogOut}>Logout</button>
