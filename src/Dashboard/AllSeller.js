@@ -8,7 +8,6 @@ import Loading from '../components/Shareds/Loading';
 
 
 const AllSeller = () => {
-
     const [deleting, setDeleting] = useState(null);
 
     const closeModal = () => {
